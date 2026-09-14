@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tiver — 오늘을 재생하라</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<meta name="theme-color" content="#0B0D10">
+<meta name="description" content="시간을 격자가 아닌 수평으로 흐르는 스트림으로 보여주는 일정 앱, Tiver. Play your day.">
+<style>
+  @font-face { font-family: "HakgyoansimGeurimilgi"; font-weight: 400; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimGeurimilgiTTF-R.woff2") format("woff2"); }
+  @font-face { font-family: "HakgyoansimEohangkkumigi"; font-weight: 400; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2508-2@1.0/HakgyoansimEohangkkumigiB.woff2") format("woff2"); }
+  body { font-family: var(--font); }
+  .logo { font-family: var(--font-logo); font-weight: 400; }
+  h1, h2, h3, .badge { font-weight: 400; }
+  /* 색 리터럴은 여기에만 둬요 */
+  :root {
+    --bg: #0B0D10;
+    --surface: #14181E;
+    --surface-2: #1B2028;
+    --line: #262C36;
+    --fg: #E8EAED;
+    --fg-2: #9AA3AD;
+    --neon-green: #00E676;
+    --neon-pink: #FF1744;
+    --aurora-purple: #7C4DFF;
+    --aurora-purple-text: #B49CFF;
+    --on-neon: #0B0D10;
+
+    --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+    --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px; --sp-16: 64px; --sp-20: 80px;
+    --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 24px; --r-pill: 999px;
+    --font: "HakgyoansimGeurimilgi", "Apple SD Gothic Neo", Pretendard, "Malgun Gothic", "맑은 고딕", sans-serif;
+    --font-logo: "HakgyoansimEohangkkumigi", var(--font);
+    --measure: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: dark; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { margin: 0; line-height: 1.25; letter-spacing: -0.01em; }
+  p { margin: 0; }
+  a { color: inherit; }
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .wrap { max-width: var(--measure); margin: 0 auto; padding-inline: var(--sp-5); }
+  section { padding-block: var(--sp-16); }
+  .sec-head { margin-bottom: var(--sp-8); }
+  .sec-head h2 { font-size: clamp(24px, 3.4vw, 34px); }
+  .sec-head p { color: var(--fg-2); margin-top: var(--sp-2); max-width: 60ch; }
+  .eyebrow {
+    display: inline-block;
+    color: var(--neon-green);
+    font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+    margin-bottom: var(--sp-3);
+  }
+
+  /* 브랜드: 앱 아이콘 + 어항꾸미기 TIVER */
+  .brand { display: inline-flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-5); }
+  .brand img { width: 64px; height: 64px; border-radius: 14px; box-shadow: 0 0 24px color-mix(in srgb, var(--neon-green) 30%, transparent); }
+  .brand .logo { font-size: 40px; color: var(--neon-green); letter-spacing: .02em; text-shadow: 0 0 18px color-mix(in srgb, var(--neon-green) 45%, transparent); }
+
+  /* 히어로 */
+  .hero { padding-block: var(--sp-20) var(--sp-12); text-align: center; position: relative; }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(60% 50% at 50% 0%, color-mix(in srgb, var(--aurora-purple) 22%, transparent), transparent 70%);
+  }
+  .hero h1 { font-size: clamp(30px, 6vw, 56px); font-weight: 800; word-break: keep-all; }
+  .hero .lead, .card p, .sec-head p { word-break: keep-all; }
+  .hero .en {
+    display: block; margin-top: var(--sp-3);
+    font-size: clamp(18px, 3vw, 26px); font-weight: 600; color: var(--neon-green);
+  }
+  .hero .lead {
+    margin: var(--sp-6) auto 0; max-width: 34em; color: var(--fg-2); font-size: clamp(16px, 2vw, 19px);
+  }
+  .cta-row { margin-top: var(--sp-8); display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: var(--sp-2);
+    padding: var(--sp-3) var(--sp-6);
+    border-radius: var(--r-pill); font-weight: 700; text-decoration: none; font-size: 16px;
+    border: 1px solid transparent; transition: transform .15s ease, filter .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+  .btn:focus-visible { outline: 2px solid var(--neon-green); outline-offset: 3px; }
+  .btn-primary { background: var(--neon-green); color: var(--on-neon); }
+  .btn-ghost { border-color: var(--line); color: var(--fg); background: var(--surface); }
+  .hero .note { margin-top: var(--sp-4); color: var(--fg-2); font-size: 14px; }
+
+  /* 타임라인 데모 */
+  .demo { padding-top: 0; }
+  .demo-frame {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    padding: var(--sp-4);
+    overflow-x: auto;
+  }
+  .demo-frame svg { display: block; width: 100%; min-width: 760px; height: auto; }
+  .demo-caption { margin-top: var(--sp-3); color: var(--fg-2); font-size: 14px; }
+  .demo-legend { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-5); margin-top: var(--sp-4); font-size: 13px; color: var(--fg-2); }
+  .demo-legend span::before {
+    content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px;
+    margin-right: var(--sp-2); vertical-align: -1px; background: var(--dot);
+  }
+  .tick { stroke: var(--line); }
+  .tick-label { fill: var(--fg-2); font-size: 12px; font-family: var(--font); }
+  .drop { fill: var(--surface-2); stroke: var(--line); }
+  .drop-title { fill: var(--fg); font-size: 13px; font-weight: 700; font-family: var(--font); }
+  .drop-sub { fill: var(--fg-2); font-size: 11px; font-family: var(--font); }
+  .drop-bar { fill: var(--neon-green); }
+  .zone { fill: var(--neon-pink); fill-opacity: .14; stroke: var(--neon-pink); stroke-opacity: .6; stroke-dasharray: 4 4; }
+  .zone-label { fill: var(--neon-pink); font-size: 12px; font-weight: 700; font-family: var(--font); }
+  .anchor { fill: var(--aurora-purple); }
+  .anchor-label { fill: var(--aurora-purple-text); font-size: 12px; font-weight: 700; font-family: var(--font); }
+  .now { stroke: var(--neon-green); stroke-width: 2; }
+  .now-glow { stroke: var(--neon-green); stroke-width: 10; stroke-opacity: .3; animation: pulse 1.8s ease-in-out infinite; }
+  .now-dot { fill: var(--neon-green); animation: pulse 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .now-label { fill: var(--neon-green); font-size: 12px; font-weight: 800; font-family: var(--font); }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .35; transform: scale(1.5); }
+  }
+
+  /* 카드 공통 */
+  .grid { display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: var(--sp-5);
+    display: flex; flex-direction: column; gap: var(--sp-2);
+  }
+  .card h3 { font-size: 18px; }
+  .card p { color: var(--fg-2); font-size: 15px; }
+  .card .en { color: var(--fg-2); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .card .head { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); flex-wrap: wrap; }
+  .concept { border-top: 3px solid var(--accent, var(--line)); }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: var(--sp-1);
+    padding: 2px var(--sp-2); border-radius: var(--r-pill);
+    font-size: 12px; font-weight: 700; white-space: nowrap;
+    background: color-mix(in srgb, var(--badge) 18%, transparent);
+    color: var(--badge);
+  }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--badge); }
+  .badge-shipped { --badge: var(--neon-green); }
+  .badge-building { --badge: var(--aurora-purple-text); }
+  .badge-planned { --badge: var(--fg-2); }
+
+  /* 로드맵 */
+  .phases { display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .phase { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--sp-5); }
+  .phase h3 { font-size: 17px; display: flex; align-items: baseline; gap: var(--sp-2); }
+  .phase h3 .n { color: var(--neon-green); font-size: 13px; letter-spacing: .08em; }
+  .phase .sub { color: var(--fg-2); font-size: 13px; margin-top: var(--sp-1); }
+  .phase ul { margin-top: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-2); }
+  .phase li { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-3); font-size: 15px;
+    padding-block: var(--sp-2); border-top: 1px solid var(--line); }
+  .phase li:first-child { border-top: 0; }
+  .phase-now { border-color: var(--neon-green); }
+
+  /* 페르소나 */
+  .persona .who { font-size: 13px; color: var(--fg-2); }
+  .persona .how { color: var(--fg); font-size: 15px; margin-top: var(--sp-2); }
+  .persona .how b { color: var(--neon-green); font-weight: 700; }
+
+  /* 알림 · 푸터 */
+  .notify { text-align: center; }
+  .notify .box {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-xl);
+    padding: var(--sp-10) var(--sp-5); max-width: 560px; margin: 0 auto;
+  }
+  .notify h2 { font-size: 24px; }
+  .notify p { color: var(--fg-2); margin-top: var(--sp-3); }
+  footer { padding-block: var(--sp-8); border-top: 1px solid var(--line); text-align: center; color: var(--fg-2); font-size: 14px; }
+
+  @media (max-width: 480px) {
+    section { padding-block: var(--sp-12); }
+    .hero { padding-block: var(--sp-16) var(--sp-8); }
+    .wrap { padding-inline: var(--sp-4); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .now-glow, .now-dot { animation: none; }
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><img src="assets/icon.png" alt="" width="88" height="88"><span class="logo">TIVER</span></div>
+    <h1>복잡한 하루는 끝, 오늘을 재생하라<span class="en">Play your day</span></h1>
+    <p class="lead">시간을 격자에 가두지 않고 수평으로 흐르는 스트림에 올려요. 늦어지면 뒤 일정을 밀고, 놓칠 수 없는 약속은 앞을 압축해서 지켜요.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#notify">출시 알림 받기</a>
+      <a class="btn btn-ghost" href="#features">무엇을 만들고 있나요</a>
+    </div>
+    <p class="note">지금 Phase 1 (Core MVP) 을 만들고 있어요</p>
+  </div>
+</header>
+
+<main>
+  <section class="demo" aria-labelledby="demo-title">
+    <div class="wrap">
+      <h2 id="demo-title" hidden>데일리 스트림 데모</h2>
+      <div class="demo-frame">
+        <svg viewBox="0 0 900 230" role="img"
+             aria-label="데일리 스트림 데모. 07시부터 12시까지 수평 타임라인 위에 기상·준비, 아침, 출근 이동 3개의 타임 드롭이 있고 10시에 팀 미팅 앵커가 있어요. 현재 시각 07시 30분을 나타내는 네온 핑크 NOW 라인이 맥동하고, NOW 와 앵커 사이는 퍼플 매직 존으로 표시해 앞 드롭을 압축해요.">
+          <!-- 시간 눈금 07~12시, 1시간 = 150px -->
+          <g>
+            <line class="tick" x1="60" y1="40" x2="60" y2="200"/><text class="tick-label" x="60" y="26" text-anchor="middle">07:00</text>
+            <line class="tick" x1="210" y1="40" x2="210" y2="200"/><text class="tick-label" x="210" y="26" text-anchor="middle">08:00</text>
+            <line class="tick" x1="360" y1="40" x2="360" y2="200"/><text class="tick-label" x="360" y="26" text-anchor="middle">09:00</text>
+            <line class="tick" x1="510" y1="40" x2="510" y2="200"/><text class="tick-label" x="510" y="26" text-anchor="middle">10:00</text>
+            <line class="tick" x1="660" y1="40" x2="660" y2="200"/><text class="tick-label" x="660" y="26" text-anchor="middle">11:00</text>
+            <line class="tick" x1="810" y1="40" x2="810" y2="200"/><text class="tick-label" x="810" y="26" text-anchor="middle">12:00</text>
+          </g>
+
+          <!-- 매직 존: NOW(07:30) ~ 앵커(10:00) -->
+          <rect class="zone" x="135" y="44" width="375" height="152" rx="12"/>
+          <text class="zone-label" x="150" y="62">매직 존 · 앵커까지 앞 드롭을 압축해요</text>
+
+          <!-- 타임 드롭 3개 -->
+          <g>
+            <rect class="drop" x="88" y="78" width="118" height="56" rx="12"/>
+            <text class="drop-title" x="102" y="101">기상 · 준비</text>
+            <text class="drop-sub" x="102" y="118">07:10 – 08:00 → 40분으로</text>
+            <rect class="drop-bar" x="88" y="130" width="60" height="4" rx="2"/>
+          </g>
+          <g>
+            <rect class="drop" x="214" y="78" width="92" height="56" rx="12"/>
+            <text class="drop-title" x="228" y="101">아침</text>
+            <text class="drop-sub" x="228" y="118">30분 → 20분</text>
+          </g>
+          <g>
+            <rect class="drop" x="314" y="78" width="180" height="56" rx="12"/>
+            <text class="drop-title" x="328" y="101">출근 이동</text>
+            <text class="drop-sub" x="328" y="118">지하철 2호선 · 08:52 도착</text>
+          </g>
+
+          <!-- 앵커 10:00 -->
+          <g>
+            <polygon class="anchor" points="510,146 522,160 510,174 498,160"/>
+            <text class="anchor-label" x="530" y="165">앵커 · 팀 미팅 10:00</text>
+          </g>
+
+          <!-- NOW 라인 07:30 -->
+          <g>
+            <line class="now-glow" x1="135" y1="36" x2="135" y2="204"/>
+            <line class="now" x1="135" y1="36" x2="135" y2="204"/>
+            <circle class="now-dot" cx="135" cy="36" r="5"/>
+            <text class="now-label" x="135" y="222" text-anchor="middle">NOW 07:30</text>
+          </g>
+        </svg>
+      </div>
+      <p class="demo-caption">늦게 일어난 아침이에요. NOW 가 07:30 인데 10:00 팀 미팅은 옮길 수 없어요. 매직 존이 앞 드롭을 같은 비율로 줄여 앵커를 지켜요.</p>
+      <div class="demo-legend">
+        <span style="--dot: var(--neon-green)">NOW 라인</span>
+        <span style="--dot: var(--surface-2)">타임 드롭</span>
+        <span style="--dot: var(--neon-green)">앵커</span>
+        <span style="--dot: var(--neon-pink)">매직 존</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="concepts" aria-labelledby="concepts-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">핵심 개념</span>
+        <h2 id="concepts-title">네 단어만 알면 돼요</h2>
+        <p>Tiver 는 하루를 강물처럼 봐요. 흐름 위에 조각을 올리고, 움직이지 않는 축을 세우고, 변수가 생기면 다시 계산해요.</p>
+      </div>
+      <div class="grid">
+        <article class="card concept" style="--accent: var(--neon-pink)">
+          <span class="en">Daily Stream</span>
+          <h3>데일리 스트림</h3>
+          <p>하루가 수평 축으로 흘러요. 현재(NOW)를 가운데 두고 지난 기록과 다음 흐름을 힐끗 봐요.</p>
+        </article>
+        <article class="card concept" style="--accent: var(--fg-2)">
+          <span class="en">Time Drop</span>
+          <h3>타임 드롭</h3>
+          <p>스트림 위에 툭 올리는 실행 단위예요. 시작 시각, 지속시간, 체크리스트를 가져요.</p>
+        </article>
+        <article class="card concept" style="--accent: var(--neon-green)">
+          <span class="en">Anchor</span>
+          <h3>앵커</h3>
+          <p>미팅, 출근처럼 옮길 수 없는 고정 마일스톤이에요. 흐름이 흔들려도 자리를 지켜요.</p>
+        </article>
+        <article class="card concept" style="--accent: var(--aurora-purple)">
+          <span class="en">Time Magic</span>
+          <h3>타임 매직</h3>
+          <p>변수가 생기면 앵커를 지키도록 앞 일정을 다시 계산해요. Phase 1 은 규칙 기반 압축이고, 맥락을 읽는 AI 는 Phase 2 에 넣어요.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" aria-labelledby="features-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">기능</span>
+        <h2 id="features-title">지금 어디까지 왔나요</h2>
+        <p>출시한 것, 만드는 중인 것, 준비 중인 것을 그대로 적어요. 아직 없는 걸 있다고 쓰지 않아요.</p>
+      </div>
+      <div class="grid" id="feature-grid"></div>
+    </div>
+  </section>
+
+  <section id="roadmap" aria-labelledby="roadmap-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">로드맵</span>
+        <h2 id="roadmap-title">3단계로 만들어요</h2>
+        <p>먼저 스트림과 시간 엔진을 세우고, 그다음 AI 와 수익 모델, 마지막에 게이미피케이션과 생태계를 열어요.</p>
+      </div>
+      <div class="phases" id="phase-grid"></div>
+    </div>
+  </section>
+
+  <section id="personas" aria-labelledby="personas-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">이런 분에게</span>
+        <h2 id="personas-title">불규칙한 하루를 유연하게 다루고 싶은 4명</h2>
+      </div>
+      <div class="grid">
+        <article class="card persona">
+          <h3>바쁜 직장인</h3>
+          <p class="who">회의, 마감, 이동이 뒤섞인 하루를 보내요</p>
+          <p class="how"><b>수평 스트림과 NOW 센터링</b>으로 하루 전체 맥락을 바로 잡아요.</p>
+        </article>
+        <article class="card persona">
+          <h3>자기계발러</h3>
+          <p class="who">운동, 공부 같은 루틴을 꾸준히 이어가고 싶어요</p>
+          <p class="how"><b>템플릿 임포트</b>로 검증된 루틴을 내 스트림에 붙여요. Phase 3 에 열어요.</p>
+        </article>
+        <article class="card persona">
+          <h3>소규모 사업자</h3>
+          <p class="who">프로젝트 단위 일정과 고정 마일스톤이 중요해요</p>
+          <p class="how"><b>타임 매직</b>이 앵커에서 거꾸로 계산해 실행 계획을 세워요. AI 역산은 Phase 2 예요.</p>
+        </article>
+        <article class="card persona">
+          <h3>라이프스타일 팔로워</h3>
+          <p class="who">전문가의 효율적인 스케줄을 따라 해 보고 싶어요</p>
+          <p class="how"><b>마켓플레이스</b>에서 전문가의 타임라인을 구독해 내 하루에 스트리밍해요. Phase 3 에 열어요.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="notify" class="notify" aria-labelledby="notify-title">
+    <div class="wrap">
+      <div class="box">
+        <span class="eyebrow">출시 알림</span>
+        <h2 id="notify-title">준비되면 가장 먼저 알려드려요</h2>
+        <p>알림 신청은 곧 열어요. 지금은 이 페이지를 저장해 두세요.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">가볍지이지가 만들어요 · <a href="privacy.html">개인정보처리방침</a> · <a href="support.html">지원</a></div>
+</footer>
+
+<!-- landing/features.json 과 같은 내용이에요. 둘 중 하나만 고치지 않아요 -->
+<script id="features" type="application/json">
+[
+  {
+    "id": "track-shift",
+    "title": "트랙 시프팅",
+    "desc": "PLAY 를 누르면 지연된 시간만큼 뒤 타임 드롭을 자석처럼 밀어 스트림을 다시 정렬해요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "magic-zone",
+    "title": "매직 존",
+    "desc": "앵커 시각을 넘기지 않도록 앞 드롭의 지속시간을 등배율로 압축해요. 압축해도 못 지키면 압축하지 않고 뺄 것을 하나 제안해요. Tiver 의 중심이라 누구나 무료로 써요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "paused",
+    "title": "PLAY · Paused 판정",
+    "desc": "NOW 라인이 드롭에 닿았는데 완료하지 않으면 1분 뒤 Paused 로 들어가 다음 PLAY 를 기다려요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "event-log",
+    "title": "이벤트 로그",
+    "desc": "ITEM_START · ITEM_END · TRACK_SHIFTED · STREAM_INTERRUPT · MAGIC_ZONE 을 기기 안에만 기록해요. 서버로 보내지 않아요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "local-store",
+    "title": "기기 안 저장",
+    "desc": "드롭·앵커·기록을 기기에만 저장해요. 앱을 껐다 켜도 오늘의 흐름이 그대로예요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "notifications",
+    "title": "밀림·출발 알림",
+    "desc": "드롭이 밀리면 한 번, 앵커에 맞춰 나서야 할 시각에 한 번 기기에서 알려요. 서버 푸시가 아니라 조용해요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "replay-report",
+    "title": "이달의 재생 리포트",
+    "desc": "끝낸 드롭, 지각 방어 횟수, 다시 재생한 횟수를 마이 탭에서 봐요. 거른 횟수·밀린 시간은 세지 않아요. 월말 팝아트 카드는 다음이에요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "daily-stream",
+    "title": "데일리 스트림 화면",
+    "desc": "하루를 수평으로 스크롤하는 메인 타임라인이에요. 강물 위에 카드가 떠 있고, 루틴 탭에서 프리셋을 바로 올릴 수 있어요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "river",
+    "title": "물가에서 보는 강",
+    "desc": "위는 하늘과 건너편 기슭, 가운데는 멀수록 잔잔하고 가까울수록 큰 물결, 아래는 내가 선 물가예요. 새벽·낮·노을·밤에 따라 물빛이 바뀌고 맑은 밤엔 별이 떠요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "weather-river",
+    "title": "날씨 따라 바뀌는 강",
+    "desc": "비·눈·맑음에 따라 물빛과 반짝임이 달라져요. 기상청 실황과 연결했고, 별빛은 맑은 밤에만 떠요. 흐림은 초단기예보를 붙인 뒤 더해요. 무료예요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "stone-skip",
+    "title": "물수제비",
+    "desc": "물가에서 위로 튕기면 납작한 돌이 물 위를 튀어 가요. 길고 세게 튕길수록 멀리, 여러 번. 점수도 보상도 없는, 쉬어 가는 놀이예요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "river-sound",
+    "title": "강물 소리",
+    "desc": "물 흐르는 소리를 틀어 둘 수 있어요. 비 오는 날엔 빗소리, 맑은 밤엔 풀벌레 소리로 바뀌고, 듣던 음악은 끊지 않아요. 무료예요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "now-line",
+    "title": "NOW 라인 펄스",
+    "desc": "현재 시각을 네온 핑크 수직선으로 표시하고 살아 있는 듯 천천히 맥동해요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "inline-checklist",
+    "title": "인라인 아코디언 체크리스트",
+    "desc": "카드를 누르면 세로로 펼쳐져 서브 태스크를 보여주고, 완료율만큼 네온 프로그레스 바가 차요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "voice-quick-add",
+    "title": "말로 한 줄 띄우기",
+    "desc": "\"7시 반에 샤워 10분\", \"9시까지 출근\"처럼 말하거나 적으면 바로 타임 드롭·앵커로 띄워요. 휴대폰 안에서만 읽어요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "transit",
+    "title": "대중교통 실시간 주입",
+    "desc": "집과 회사를 카카오 장소 검색으로 지정하고, 자가용은 카카오모빌리티, 대중교통은 ODsay 경로로 이동 시간을 채워요. 실시간 도착 정보는 공공데이터로 받아요.",
+    "status": "planned",
+    "phase": 1
+  },
+  {
+    "id": "location-magic",
+    "title": "장소 기반 매직 존",
+    "desc": "설정에서 집·회사를 카카오로 정하면 대중교통(ODsay) 또는 자가용(카카오) 경로의 지금 소요 시간으로 이동 드롭 길이와 출발 시각을 맞춰요.",
+    "status": "building",
+    "phase": 1
+  },
+  {
+    "id": "nl-parsing",
+    "title": "자연어 파싱 AI",
+    "desc": "\"내일 9시 출근, 그 전에 운동\" 처럼 말하면 타임 드롭과 앵커로 바꿔요.",
+    "status": "planned",
+    "phase": 2
+  },
+  {
+    "id": "context-compress",
+    "title": "맥락 인지형 압축",
+    "desc": "등배율 압축을 넘어 무엇을 줄이고 무엇을 뺄지 맥락을 보고 정해요.",
+    "status": "planned",
+    "phase": 2
+  },
+  {
+    "id": "pro",
+    "title": "Tiver Pro",
+    "desc": "매직 존과 날씨 따라 변하는 강은 누구나 무료로 써요. Pro 는 강을 꾸미고 더 넓게 흘러요: 강 꾸미기, 나만의 물고기, 남의 루틴 가져오기, 매직 존+, 리포트 카드. 월 4,400원 · 연 33,000원 · 평생 59,900원(예정).",
+    "status": "planned",
+    "phase": 2
+  },
+  {
+    "id": "river-decor",
+    "title": "강 꾸미기 (Pro)",
+    "desc": "계절 강 테마, 물 위에 띄우는 종이배·등불·반딧불·꽃잎, 물수제비 돌 모양을 골라요. 강을 바꾸지 않고 위에 얹어요.",
+    "status": "planned",
+    "phase": 2
+  },
+  {
+    "id": "routine-packs",
+    "title": "남의 루틴 가져오기 (Pro)",
+    "desc": "\"10km 마라톤 대회 준비\", \"신입 사원 갓생 살기\" 같은 루틴을 기간을 정해 가져와요. 그동안 내 루틴은 강 깊이 가라앉아 쉬다가, 기간이 끝나면 다시 떠올라요.",
+    "status": "planned",
+    "phase": 2
+  },
+  {
+    "id": "sound-packs",
+    "title": "사운드 팩 (Pro)",
+    "desc": "벚꽃 강·첫눈·여름밤 같은 계절 소리와 Tiver 만의 음악을 강물 소리 위에 얹어요.",
+    "status": "planned",
+    "phase": 2
+  },
+  {
+    "id": "river-fish",
+    "title": "나만의 물고기 (Pro)",
+    "desc": "드롭을 끝내고, 다시 흐르고, 앵커를 지킬 때마다 포인트가 모여요. 포인트로 물고기를 데려오면 내 강에서 헤엄쳐요. 포인트는 깎이지 않고 돈으로 팔지 않아요.",
+    "status": "planned",
+    "phase": 2
+  },
+  {
+    "id": "time-commerce",
+    "title": "GPS 타임 커머스",
+    "desc": "다음 앵커까지 30분 넘게 비거나 20분 넘게 일찍 도착하면 주변 혜택을 스트림에 올려요.",
+    "status": "planned",
+    "phase": 3
+  },
+  {
+    "id": "river-quality",
+    "title": "시간의 강물 수질 관리",
+    "desc": "달성률에 따라 배경 강물의 탁도가 바뀌고 희귀 요정을 해금해요.",
+    "status": "planned",
+    "phase": 3
+  },
+  {
+    "id": "marketplace",
+    "title": "템플릿 마켓플레이스",
+    "desc": "내가 만든 루틴을 올리고 다른 사람의 타임라인을 구독해 내 하루에 흘려보내요. 먼저 Pro 의 \"남의 루틴 가져오기\"로 Tiver 가 만든 루틴부터 열어요.",
+    "status": "planned",
+    "phase": 3
+  }
+]
+</script>
+
+<script>
+  const STATUS = {
+    shipped:  { label: '출시',     cls: 'badge-shipped' },
+    building: { label: '만드는 중', cls: 'badge-building' },
+    planned:  { label: '준비 중',   cls: 'badge-planned' },
+  };
+  const PHASES = {
+    1: { name: 'Core MVP',                 sub: '스트림 화면, 시간 엔진, 대중교통 주입' },
+    2: { name: 'AI & Monetization',        sub: '자연어 파싱, 맥락 압축, Tiver Pro' },
+    3: { name: 'Gamification & Ecosystem', sub: '타임 커머스, 수질 관리, 마켓플레이스' },
+  };
+  const CURRENT_PHASE = 1;
+
+  const features = JSON.parse(document.getElementById('features').textContent);
+
+  function badge(status) {
+    const s = STATUS[status] || STATUS.planned;
+    return `<span class="badge ${s.cls}">${s.label}</span>`;
+  }
+  function esc(str) {
+    return String(str).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  }
+
+  document.getElementById('feature-grid').innerHTML = features.map(f => `
+    <article class="card" id="feature-${esc(f.id)}">
+      <div class="head"><h3>${esc(f.title)}</h3>${badge(f.status)}</div>
+      <p>${esc(f.desc)}</p>
+      <span class="en">Phase ${f.phase}</span>
+    </article>`).join('');
+
+  document.getElementById('phase-grid').innerHTML = Object.keys(PHASES).map(n => {
+    const items = features.filter(f => String(f.phase) === n);
+    return `
+    <article class="phase${Number(n) === CURRENT_PHASE ? ' phase-now' : ''}">
+      <h3><span class="n">PHASE ${n}</span>${esc(PHASES[n].name)}</h3>
+      <p class="sub">${esc(PHASES[n].sub)}</p>
+      <ul>${items.map(f => `<li><span>${esc(f.title)}</span>${badge(f.status)}</li>`).join('')}</ul>
+    </article>`;
+  }).join('');
+</script>
+</body>
+</html>
