@@ -59,6 +59,14 @@
   ul { margin: 0; padding: 0; list-style: none; }
 
   .wrap { max-width: var(--measure); margin: 0 auto; padding-inline: var(--sp-5); }
+  /* 인트로 스크린샷 줄: 좁은 화면에서는 옆으로 넘겨 본다 */
+  .shots { display: flex; gap: var(--sp-5); overflow-x: auto; padding-bottom: var(--sp-4); scroll-snap-type: x mandatory; }
+  .shots figure { margin: 0; flex: 0 0 200px; scroll-snap-align: start; }
+  .shots img { width: 100%; height: auto; border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--surface); display: block; }
+  .shots figcaption { margin-top: var(--sp-3); color: var(--fg-2); font-size: 13px; line-height: 1.5; }
+  .shots figcaption b { display: block; color: var(--fg); font-family: var(--font-head); font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  @media (min-width: 900px) { .shots { overflow: visible; } .shots figure { flex: 1 1 0; } }
+
   section { padding-block: var(--sp-16); }
   .sec-head { margin-bottom: var(--sp-8); }
   .sec-head h2 { font-size: clamp(24px, 3.4vw, 34px); }
@@ -217,7 +225,6 @@
       <a class="btn btn-primary" href="#notify">출시 알림 받기</a>
       <a class="btn btn-ghost" href="#features">무엇을 만들고 있나요</a>
     </div>
-    <p class="note">지금 Phase 1 (Core MVP) 을 만들고 있어요</p>
   </div>
 </header>
 
@@ -313,6 +320,38 @@
           <h3>매직 존</h3>
           <p>앵커 앞 구간이에요. 늦게 시작하면 빼도 되는 타임 드롭은 쉬고 줄여도 되는 것은 줄여서 앵커 시각에 맞춰요. 맥락을 읽는 AI 는 Phase 2 에 넣어요.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="intro" aria-labelledby="intro-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">앱을 처음 켜면</span>
+        <h2 id="intro-title">다섯 장이면 다 알아요</h2>
+        <p>격자 달력과 달라서, 설정을 시작하기 전에 무엇을 보게 될지 먼저 알려 줘요. 설정 &gt; 정보에서 언제든 다시 볼 수 있어요.</p>
+      </div>
+      <div class="shots">
+        <figure>
+          <img src="assets/intro/stream.png" alt="강물 위에 타임 드롭 카드와 초록 NOW 라인이 있는 스트림 화면" loading="lazy" width="440" height="956">
+          <figcaption><b>데일리 스트림</b>왼쪽은 지나간 시간, 오른쪽은 다가올 시간이에요</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/intro/drop.png" alt="타임 드롭 카드 하나를 설명하는 화면" loading="lazy" width="440" height="956">
+          <figcaption><b>타임 드롭</b>시작 시각과 걸리는 시간이 있는 카드 하나</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/intro/anchor.png" alt="앵커를 설명하는 화면" loading="lazy" width="440" height="956">
+          <figcaption><b>앵커</b>출근·미팅처럼 옮길 수 없는 시각이에요</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/intro/magic.png" alt="매직 존이 타임 드롭을 줄이고 뺀 결과 화면" loading="lazy" width="440" height="956">
+          <figcaption><b>매직 존</b>꼭 하기·줄여도 됨·빼도 됨을 미리 정해 둬요</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/intro/late.png" alt="원래 계획과 매직 존이 접은 결과를 나란히 비교한 화면" loading="lazy" width="440" height="956">
+          <figcaption><b>7시 30분에 일어난 날</b>빼도 되는 건 쉬고 줄여도 되는 건 줄여 출근을 지켜요</figcaption>
+        </figure>
       </div>
     </div>
   </section>
