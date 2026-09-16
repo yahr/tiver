@@ -60,6 +60,13 @@
 
   .wrap { max-width: var(--measure); margin: 0 auto; padding-inline: var(--sp-5); }
   /* 인트로 스크린샷 줄: 좁은 화면에서는 옆으로 넘겨 본다 */
+
+  /* 상단 실제 화면 줄 */
+  .demo-shots { display: flex; gap: var(--sp-6); align-items: flex-end; justify-content: center; flex-wrap: wrap; }
+  .demo-shots figure { margin: 0; flex: 0 1 260px; }
+  .demo-shots img { width: 100%; height: auto; border-radius: var(--r-xl); border: 1px solid var(--line); background: var(--surface); display: block; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+  .demo-shots figcaption { margin-top: var(--sp-3); color: var(--fg-2); font-size: 13px; line-height: 1.5; text-align: center; }
+  .demo-shots figcaption b { color: var(--fg); font-weight: 600; }
   .shots { display: flex; gap: var(--sp-5); overflow-x: auto; padding-bottom: var(--sp-4); scroll-snap-type: x mandatory; }
   .shots figure { margin: 0; flex: 0 0 200px; scroll-snap-align: start; }
   .shots img { width: 100%; height: auto; border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--surface); display: block; }
@@ -113,40 +120,8 @@
   .btn-ghost { border-color: var(--line); color: var(--fg); background: var(--surface); }
   .hero .note { margin-top: var(--sp-4); color: var(--fg-2); font-size: 14px; }
 
-  /* 타임라인 데모 */
+  /* 상단 실제 화면 */
   .demo { padding-top: 0; }
-  .demo-frame {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r-xl);
-    padding: var(--sp-4);
-    overflow-x: auto;
-  }
-  .demo-frame svg { display: block; width: 100%; min-width: 760px; height: auto; }
-  .demo-caption { margin-top: var(--sp-3); color: var(--fg-2); font-size: 14px; }
-  .demo-legend { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-5); margin-top: var(--sp-4); font-size: 13px; color: var(--fg-2); }
-  .demo-legend span::before {
-    content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px;
-    margin-right: var(--sp-2); vertical-align: -1px; background: var(--dot);
-  }
-  .tick { stroke: var(--line); }
-  .tick-label { fill: var(--fg-2); font-size: 12px; font-family: var(--font); }
-  .drop { fill: var(--surface-2); stroke: var(--line); }
-  .drop-title { fill: var(--fg); font-size: 13px; font-weight: 700; font-family: var(--font); }
-  .drop-sub { fill: var(--fg-2); font-size: 11px; font-family: var(--font); }
-  .drop-bar { fill: var(--neon-green); }
-  .zone { fill: var(--neon-pink); fill-opacity: .14; stroke: var(--neon-pink); stroke-opacity: .6; stroke-dasharray: 4 4; }
-  .zone-label { fill: var(--neon-pink); font-size: 12px; font-weight: 700; font-family: var(--font); }
-  .anchor { fill: var(--aurora-purple); }
-  .anchor-label { fill: var(--aurora-purple-text); font-size: 12px; font-weight: 700; font-family: var(--font); }
-  .now { stroke: var(--neon-green); stroke-width: 2; }
-  .now-glow { stroke: var(--neon-green); stroke-width: 10; stroke-opacity: .3; animation: pulse 1.8s ease-in-out infinite; }
-  .now-dot { fill: var(--neon-green); animation: pulse 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-  .now-label { fill: var(--neon-green); font-size: 12px; font-weight: 800; font-family: var(--font); }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: .35; transform: scale(1.5); }
-  }
 
   /* 카드 공통 */
   .grid { display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
@@ -209,7 +184,6 @@
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .now-glow, .now-dot { animation: none; }
     .btn { transition: none; }
   }
 </style>
@@ -220,7 +194,7 @@
   <div class="wrap">
     <div class="brand"><img src="assets/icon.png" alt="" width="88" height="88"><span class="logo">TIVER</span></div>
     <h1>복잡한 하루는 끝, 오늘을 재생하라<span class="en">Play your day</span></h1>
-    <p class="lead">시간을 격자에 가두지 않고 수평으로 흐르는 스트림에 올려요. 늦어지면 뒤 일정을 밀고, 놓칠 수 없는 약속은 앞을 압축해서 지켜요.</p>
+    <p class="lead">시간을 격자에 가두지 않고 수평으로 흐르는 스트림에 올려요. 늦잠을 자도 빼도 되는 건 쉬고 줄여도 되는 건 줄여서, 놓칠 수 없는 약속 시각을 지켜요.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#notify">출시 알림 받기</a>
       <a class="btn btn-ghost" href="#features">무엇을 만들고 있나요</a>
@@ -231,63 +205,24 @@
 <main>
   <section class="demo" aria-labelledby="demo-title">
     <div class="wrap">
-      <h2 id="demo-title" hidden>데일리 스트림 데모</h2>
-      <div class="demo-frame">
-        <svg viewBox="0 0 900 230" role="img"
-             aria-label="데일리 스트림 데모. 07시부터 12시까지 수평 타임라인 위에 기상·준비, 아침, 출근 이동 3개의 타임 드롭이 있고 10시에 팀 미팅 앵커가 있어요. 현재 시각 07시 30분을 나타내는 네온 핑크 NOW 라인이 맥동하고, NOW 와 앵커 사이는 퍼플 매직 존으로 표시해 앞 드롭을 압축해요.">
-          <!-- 시간 눈금 07~12시, 1시간 = 150px -->
-          <g>
-            <line class="tick" x1="60" y1="40" x2="60" y2="200"/><text class="tick-label" x="60" y="26" text-anchor="middle">07:00</text>
-            <line class="tick" x1="210" y1="40" x2="210" y2="200"/><text class="tick-label" x="210" y="26" text-anchor="middle">08:00</text>
-            <line class="tick" x1="360" y1="40" x2="360" y2="200"/><text class="tick-label" x="360" y="26" text-anchor="middle">09:00</text>
-            <line class="tick" x1="510" y1="40" x2="510" y2="200"/><text class="tick-label" x="510" y="26" text-anchor="middle">10:00</text>
-            <line class="tick" x1="660" y1="40" x2="660" y2="200"/><text class="tick-label" x="660" y="26" text-anchor="middle">11:00</text>
-            <line class="tick" x1="810" y1="40" x2="810" y2="200"/><text class="tick-label" x="810" y="26" text-anchor="middle">12:00</text>
-          </g>
-
-          <!-- 매직 존: NOW(07:30) ~ 앵커(10:00) -->
-          <rect class="zone" x="135" y="44" width="375" height="152" rx="12"/>
-          <text class="zone-label" x="150" y="62">매직 존 · 앵커까지 앞 드롭을 압축해요</text>
-
-          <!-- 타임 드롭 3개 -->
-          <g>
-            <rect class="drop" x="88" y="78" width="118" height="56" rx="12"/>
-            <text class="drop-title" x="102" y="101">기상 · 준비</text>
-            <text class="drop-sub" x="102" y="118">07:10 – 08:00 → 40분으로</text>
-            <rect class="drop-bar" x="88" y="130" width="60" height="4" rx="2"/>
-          </g>
-          <g>
-            <rect class="drop" x="214" y="78" width="92" height="56" rx="12"/>
-            <text class="drop-title" x="228" y="101">아침</text>
-            <text class="drop-sub" x="228" y="118">30분 → 20분</text>
-          </g>
-          <g>
-            <rect class="drop" x="314" y="78" width="180" height="56" rx="12"/>
-            <text class="drop-title" x="328" y="101">출근 이동</text>
-            <text class="drop-sub" x="328" y="118">지하철 2호선 · 08:52 도착</text>
-          </g>
-
-          <!-- 앵커 10:00 -->
-          <g>
-            <polygon class="anchor" points="510,146 522,160 510,174 498,160"/>
-            <text class="anchor-label" x="530" y="165">앵커 · 팀 미팅 10:00</text>
-          </g>
-
-          <!-- NOW 라인 07:30 -->
-          <g>
-            <line class="now-glow" x1="135" y1="36" x2="135" y2="204"/>
-            <line class="now" x1="135" y1="36" x2="135" y2="204"/>
-            <circle class="now-dot" cx="135" cy="36" r="5"/>
-            <text class="now-label" x="135" y="222" text-anchor="middle">NOW 07:30</text>
-          </g>
-        </svg>
+      <div class="sec-head">
+        <span class="eyebrow">실제 화면</span>
+        <h2 id="demo-title">늦게 일어난 아침, 강물이 접어 줘요</h2>
+        <p>NOW 라인이 지금을 가리키고, 앵커(출근)까지 남은 시간에 맞춰 타임 드롭이 줄거나 쉬어요. 아래는 앱에서 그대로 뽑은 화면이에요.</p>
       </div>
-      <p class="demo-caption">늦게 일어난 아침이에요. NOW 가 07:30 인데 10:00 팀 미팅은 옮길 수 없어요. 매직 존이 앞 드롭을 같은 비율로 줄여 앵커를 지켜요.</p>
-      <div class="demo-legend">
-        <span style="--dot: var(--neon-green)">NOW 라인</span>
-        <span style="--dot: var(--surface-2)">타임 드롭</span>
-        <span style="--dot: var(--neon-green)">앵커</span>
-        <span style="--dot: var(--neon-pink)">매직 존</span>
+      <div class="demo-shots">
+        <figure>
+          <img src="assets/intro/late-start.png" alt="7시 27분, 매직 존 시작 버튼이 떠 있는 늦은 아침 스트림 화면" loading="lazy" width="440" height="956">
+          <figcaption>일어나서 <b>매직 존 시작</b>을 한 번 눌러요</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/intro/stream-hero.png" alt="매직 존이 타임 드롭을 줄이고 빼서 출근 시각에 맞춘 스트림 화면" loading="lazy" width="560" height="1217">
+          <figcaption>빼도 되는 건 쉬고 줄여도 되는 건 줄여 <b>출근 시각을 지켜요</b></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/intro/late.png" alt="원래 계획과 매직 존이 접은 결과를 나란히 비교한 화면" loading="lazy" width="440" height="956">
+          <figcaption>무엇이 바뀌었는지 <b>한눈에 비교</b>돼요</figcaption>
+        </figure>
       </div>
     </div>
   </section>
