@@ -22,7 +22,7 @@
     --line: #262C36;
     --fg: #E8EAED;
     --fg-2: #9AA3AD;
-    --neon-green: #00E676;
+    --mint: #2ED8C3;
     --neon-pink: #FF1744;
     --aurora-purple: #7C4DFF;
     --aurora-purple-text: #B49CFF;
@@ -60,15 +60,15 @@
   .sec-head p { color: var(--fg-2); margin-top: var(--sp-2); max-width: 60ch; }
   .eyebrow {
     display: inline-block;
-    color: var(--neon-green);
+    color: var(--mint);
     font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
     margin-bottom: var(--sp-3);
   }
 
   /* 브랜드: 앱 아이콘 + 어항꾸미기 TIVER */
   .brand { display: inline-flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-5); }
-  .brand img { width: 64px; height: 64px; border-radius: 14px; box-shadow: 0 0 24px color-mix(in srgb, var(--neon-green) 30%, transparent); }
-  .brand .logo { font-size: 40px; color: var(--neon-green); letter-spacing: .02em; text-shadow: 0 0 18px color-mix(in srgb, var(--neon-green) 45%, transparent); }
+  .brand img { width: 64px; height: 64px; border-radius: 14px; box-shadow: 0 0 24px color-mix(in srgb, var(--mint) 30%, transparent); }
+  .brand .logo { font-size: 40px; color: var(--mint); letter-spacing: .02em; text-shadow: 0 0 18px color-mix(in srgb, var(--mint) 45%, transparent); }
 
   /* 히어로 */
   .hero { padding-block: var(--sp-20) var(--sp-12); text-align: center; position: relative; }
@@ -82,7 +82,7 @@
   .hero .lead, .card p, .sec-head p { word-break: keep-all; }
   .hero .en {
     display: block; margin-top: var(--sp-3);
-    font-size: clamp(18px, 3vw, 26px); font-weight: 600; color: var(--neon-green);
+    font-size: clamp(18px, 3vw, 26px); font-weight: 600; color: var(--mint);
   }
   .hero .lead {
     margin: var(--sp-6) auto 0; max-width: 34em; color: var(--fg-2); font-size: clamp(16px, 2vw, 19px);
@@ -95,8 +95,8 @@
     border: 1px solid transparent; transition: transform .15s ease, filter .15s ease;
   }
   .btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
-  .btn:focus-visible { outline: 2px solid var(--neon-green); outline-offset: 3px; }
-  .btn-primary { background: var(--neon-green); color: var(--on-neon); }
+  .btn:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+  .btn-primary { background: var(--mint); color: var(--on-neon); }
   .btn-ghost { border-color: var(--line); color: var(--fg); background: var(--surface); }
   .hero .note { margin-top: var(--sp-4); color: var(--fg-2); font-size: 14px; }
 
@@ -121,15 +121,15 @@
   .drop { fill: var(--surface-2); stroke: var(--line); }
   .drop-title { fill: var(--fg); font-size: 13px; font-weight: 700; font-family: var(--font); }
   .drop-sub { fill: var(--fg-2); font-size: 11px; font-family: var(--font); }
-  .drop-bar { fill: var(--neon-green); }
+  .drop-bar { fill: var(--mint); }
   .zone { fill: var(--neon-pink); fill-opacity: .14; stroke: var(--neon-pink); stroke-opacity: .6; stroke-dasharray: 4 4; }
   .zone-label { fill: var(--neon-pink); font-size: 12px; font-weight: 700; font-family: var(--font); }
   .anchor { fill: var(--aurora-purple); }
   .anchor-label { fill: var(--aurora-purple-text); font-size: 12px; font-weight: 700; font-family: var(--font); }
-  .now { stroke: var(--neon-green); stroke-width: 2; }
-  .now-glow { stroke: var(--neon-green); stroke-width: 10; stroke-opacity: .3; animation: pulse 1.8s ease-in-out infinite; }
-  .now-dot { fill: var(--neon-green); animation: pulse 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-  .now-label { fill: var(--neon-green); font-size: 12px; font-weight: 800; font-family: var(--font); }
+  .now { stroke: var(--mint); stroke-width: 2; }
+  .now-glow { stroke: var(--mint); stroke-width: 10; stroke-opacity: .3; animation: pulse 1.8s ease-in-out infinite; }
+  .now-dot { fill: var(--mint); animation: pulse 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .now-label { fill: var(--mint); font-size: 12px; font-weight: 800; font-family: var(--font); }
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: .35; transform: scale(1.5); }
@@ -158,7 +158,7 @@
     color: var(--badge);
   }
   .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--badge); }
-  .badge-shipped { --badge: var(--neon-green); }
+  .badge-shipped { --badge: var(--mint); }
   .badge-building { --badge: var(--aurora-purple-text); }
   .badge-planned { --badge: var(--fg-2); }
 
@@ -166,18 +166,18 @@
   .phases { display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
   .phase { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--sp-5); }
   .phase h3 { font-size: 17px; display: flex; align-items: baseline; gap: var(--sp-2); }
-  .phase h3 .n { color: var(--neon-green); font-size: 13px; letter-spacing: .08em; }
+  .phase h3 .n { color: var(--mint); font-size: 13px; letter-spacing: .08em; }
   .phase .sub { color: var(--fg-2); font-size: 13px; margin-top: var(--sp-1); }
   .phase ul { margin-top: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-2); }
   .phase li { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-3); font-size: 15px;
     padding-block: var(--sp-2); border-top: 1px solid var(--line); }
   .phase li:first-child { border-top: 0; }
-  .phase-now { border-color: var(--neon-green); }
+  .phase-now { border-color: var(--mint); }
 
   /* 페르소나 */
   .persona .who { font-size: 13px; color: var(--fg-2); }
   .persona .how { color: var(--fg); font-size: 15px; margin-top: var(--sp-2); }
-  .persona .how b { color: var(--neon-green); font-weight: 700; }
+  .persona .how b { color: var(--mint); font-weight: 700; }
 
   /* 알림 · 푸터 */
   .notify { text-align: center; }
@@ -272,9 +272,9 @@
       </div>
       <p class="demo-caption">늦게 일어난 아침이에요. NOW 가 07:30 인데 10:00 팀 미팅은 옮길 수 없어요. 매직 존이 앞 드롭을 같은 비율로 줄여 앵커를 지켜요.</p>
       <div class="demo-legend">
-        <span style="--dot: var(--neon-green)">NOW 라인</span>
+        <span style="--dot: var(--mint)">NOW 라인</span>
         <span style="--dot: var(--surface-2)">타임 드롭</span>
-        <span style="--dot: var(--neon-green)">앵커</span>
+        <span style="--dot: var(--mint)">앵커</span>
         <span style="--dot: var(--neon-pink)">매직 존</span>
       </div>
     </div>
@@ -298,7 +298,7 @@
           <h3>타임 드롭</h3>
           <p>스트림 위에 툭 올리는 실행 단위예요. 시작 시각, 지속시간, 체크리스트를 가져요.</p>
         </article>
-        <article class="card concept" style="--accent: var(--neon-green)">
+        <article class="card concept" style="--accent: var(--mint)">
           <span class="en">Anchor</span>
           <h3>앵커</h3>
           <p>미팅, 출근처럼 옮길 수 없는 고정 마일스톤이에요. 흐름이 흔들려도 자리를 지켜요.</p>
@@ -559,11 +559,25 @@
     "phase": 2
   },
   {
-    "id": "river-fish",
-    "title": "나만의 물고기 (Pro)",
-    "desc": "사람마다 종류·모양·색·무늬가 다른 단 한 마리의 물고기가 내 강에서 헤엄쳐요(비단잉어·금붕어·베타·피라미·송사리·구피). 마이에서 3D 모형처럼 돌려 보고 크게 볼 수 있어요. 드롭을 끝내고 다시 흐를 때마다 포인트가 모이고, 포인트는 깎이지 않고 돈으로 팔지 않아요.",
-    "status": "planned",
+    "id": "my-templates",
+    "title": "내 템플릿 (Pro)",
+    "desc": "자주 하는 타임 드롭을 이름과 시간으로 템플릿에 더해 두고, 누르면 지금 시각에 바로 올려요.",
+    "status": "building",
     "phase": 2
+  },
+  {
+    "id": "more-places",
+    "title": "장소 여러 곳 (Pro)",
+    "desc": "집·회사 말고 헬스장·학교 같은 장소를 더하고 타임 드롭·앵커에 붙여요. 앞뒤 장소가 다르면 이동 타임 드롭이 저절로 끼어들고, 앵커에 늦지 않을 출발 시각을 알려 줘요.",
+    "status": "building",
+    "phase": 2
+  },
+  {
+    "id": "river-fish",
+    "title": "나만의 물고기",
+    "desc": "로그인하면 사람마다 종류·모양·색·무늬가 다른 단 한 마리의 물고기가 내 강에서 헤엄쳐요(비단잉어·금붕어·베타·피라미·송사리·구피). 마이에서 3D 모형처럼 돌려 보고 크게 볼 수 있고, 휴대폰을 바꿔도 같은 물고기가 따라와요.",
+    "status": "shipped",
+    "phase": 1
   },
   {
     "id": "time-commerce",
