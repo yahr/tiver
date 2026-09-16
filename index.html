@@ -9,11 +9,15 @@
 <meta name="theme-color" content="#0B0D10">
 <meta name="description" content="시간을 격자가 아닌 수평으로 흐르는 스트림으로 보여주는 일정 앱, TIVER. Play your day.">
 <style>
-  @font-face { font-family: "HakgyoansimGeurimilgi"; font-weight: 400; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimGeurimilgiTTF-R.woff2") format("woff2"); }
+  /* 서체: 가볍지이지 디자인 시스템(헤딩 에이투지체, 본문 시스템 고딕). 앱 워드마크 TIVER 만 어항꾸미기 */
+  @font-face { font-family: "A2z"; font-weight: 500; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-5Medium.woff2") format("woff2"); }
+  @font-face { font-family: "A2z"; font-weight: 600; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-6SemiBold.woff2") format("woff2"); }
+  @font-face { font-family: "A2z"; font-weight: 700; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.woff2") format("woff2"); }
   @font-face { font-family: "HakgyoansimEohangkkumigi"; font-weight: 400; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2508-2@1.0/HakgyoansimEohangkkumigiB.woff2") format("woff2"); }
   body { font-family: var(--font); }
-  .logo { font-family: var(--font-logo); font-weight: 400; }
-  h1, h2, h3, .badge { font-weight: 400; }
+  .logo { font-family: var(--font-logo); font-weight: 400; letter-spacing: 0.04em; }
+  h1, h2, h3 { font-family: var(--font-head); font-weight: 700; letter-spacing: -0.015em; }
+  .badge { font-family: var(--font-head); font-weight: 500; letter-spacing: 0.01em; }
   /* 색 리터럴은 여기에만 둬요 */
   :root {
     --bg: #0B0D10;
@@ -31,8 +35,9 @@
     --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
     --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px; --sp-16: 64px; --sp-20: 80px;
     --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 24px; --r-pill: 999px;
-    --font: "HakgyoansimGeurimilgi", "Apple SD Gothic Neo", Pretendard, "Malgun Gothic", "맑은 고딕", sans-serif;
-    --font-logo: "HakgyoansimEohangkkumigi", var(--font);
+    --font: "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, "Pretendard Variable", Pretendard, "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+    --font-head: "A2z", var(--font);
+    --font-logo: "HakgyoansimEohangkkumigi", var(--font-head);
     --measure: 1080px;
   }
 
@@ -304,11 +309,28 @@
           <p>미팅, 출근처럼 옮길 수 없는 고정 마일스톤이에요. 흐름이 흔들려도 자리를 지켜요.</p>
         </article>
         <article class="card concept" style="--accent: var(--aurora-purple)">
-          <span class="en">Time Magic</span>
-          <h3>타임 매직</h3>
-          <p>변수가 생기면 앵커를 지키도록 앞 일정을 다시 계산해요. Phase 1 은 규칙 기반 압축이고, 맥락을 읽는 AI 는 Phase 2 에 넣어요.</p>
+          <span class="en">Magic Zone</span>
+          <h3>매직 존</h3>
+          <p>앵커 앞 구간이에요. 늦게 시작하면 빼도 되는 타임 드롭은 쉬고 줄여도 되는 것은 줄여서 앵커 시각에 맞춰요. 맥락을 읽는 AI 는 Phase 2 에 넣어요.</p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section id="video" aria-labelledby="video-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">35초로 보기</span>
+        <h2 id="video-title">늦잠 잔 아침에 무슨 일이 생기나요</h2>
+        <p>격자 달력이 강물로 바뀌고, 늦게 일어난 만큼 매직 존이 접어 주는 과정을 보여줘요.</p>
+      </div>
+      <video
+        src="assets/tiver-concepts.mp4"
+        controls
+        playsinline
+        preload="metadata"
+        style="width: min(360px, 100%); border-radius: var(--r-xl); border: 1px solid var(--line); display: block; margin-inline: auto; background: var(--surface);"
+      ></video>
     </div>
   </section>
 
@@ -526,7 +548,7 @@
   {
     "id": "pro",
     "title": "TIVER Pro",
-    "desc": "매직 존과 날씨 따라 변하는 강은 누구나 무료로 써요. Pro 는 더 넓게 흘러요: 루틴 여러 개, 오늘만 매직 존, 강 꾸미기, 나만의 물고기, 남의 루틴 가져오기, 리포트 카드. 월 2,500원 · 연 21,000원 · 평생 50,000원(예정).",
+    "desc": "매직 존·날씨 따라 변하는 강·내 템플릿·루틴 두 개는 누구나 무료로 써요. 로그인하면 루틴과 장소가 계정에 담기고 나만의 물고기가 찾아와요. Pro 는 더 넓게 흘러요: 루틴 세 개부터, 오늘만 매직 존, 장소 여러 곳, 강 꾸미기, 남의 루틴 가져오기, 리포트 카드, 기록 내보내기. 월 2,500원 · 연 21,000원 · 평생 50,000원(아직 판매하지 않아요).",
     "status": "planned",
     "phase": 2
   },
@@ -560,10 +582,10 @@
   },
   {
     "id": "my-templates",
-    "title": "내 템플릿 (Pro)",
+    "title": "내 템플릿",
     "desc": "자주 하는 타임 드롭을 이름과 시간으로 템플릿에 더해 두고, 누르면 지금 시각에 바로 올려요.",
-    "status": "building",
-    "phase": 2
+    "status": "shipped",
+    "phase": 1
   },
   {
     "id": "more-places",
@@ -599,6 +621,13 @@
     "desc": "내가 만든 루틴을 올리고 다른 사람의 타임라인을 구독해 내 하루에 흘려보내요. 먼저 Pro 의 \"남의 루틴 가져오기\"로 TIVER 가 만든 루틴부터 열어요.",
     "status": "planned",
     "phase": 3
+  },
+  {
+    "id": "export-records",
+    "title": "기록 내보내기 (Pro)",
+    "desc": "재생 기록을 캘린더로 보내거나 CSV 로 내려받아요.",
+    "status": "planned",
+    "phase": 2
   }
 ]
 </script>

@@ -1,15 +1,17 @@
 /* 정책·지원 페이지 공통. 색은 랜딩(index.html)과 같은 토큰 */
-@font-face { font-family: "HakgyoansimGeurimilgi"; font-weight: 400; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimGeurimilgiTTF-R.woff2") format("woff2"); }
+@font-face { font-family: "A2z"; font-weight: 700; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.woff2") format("woff2"); }
 @font-face { font-family: "HakgyoansimEohangkkumigi"; font-weight: 400; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2508-2@1.0/HakgyoansimEohangkkumigiB.woff2") format("woff2"); }
 :root {
   --bg: #0B0D10; --surface: #14181E; --line: #262C36; --fg: #E8EAED; --fg-2: #9AA3AD; --neon-green: #00E676;
-  --font: "HakgyoansimGeurimilgi", "Apple SD Gothic Neo", Pretendard, "Malgun Gothic", sans-serif;
-  --font-logo: "HakgyoansimEohangkkumigi", var(--font);
+  --font: "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, "Pretendard Variable", Pretendard, "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+  --font-head: "A2z", var(--font);
+  --font-logo: "HakgyoansimEohangkkumigi", var(--font-head);
 }
 * { box-sizing: border-box; }
 html { color-scheme: dark; }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.75; word-break: keep-all; }
 .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 64px; }
+h1, h2 { font-family: var(--font-head); letter-spacing: -0.015em; }
 .logo { font-family: var(--font-logo); color: var(--neon-green); text-decoration: none; font-size: 22px; letter-spacing: 2px; }
 h1 { font-size: 28px; font-weight: 400; margin: 24px 0 4px; }
 h2 { font-size: 19px; font-weight: 400; margin: 36px 0 8px; color: var(--neon-green); }
