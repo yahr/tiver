@@ -377,7 +377,8 @@
 </footer>
 
 <!-- landing/features.json 과 같은 내용이에요. 둘 중 하나만 고치지 않아요 -->
-<script id="features" type="application/json">
+<!-- 섹션 id="features" 와 겹치지 않게 데이터는 features-data 다(2026-09-19 수정) -->
+<script id="features-data" type="application/json">
 [
   {
     "id": "track-shift",
@@ -619,7 +620,7 @@
   };
   const CURRENT_PHASE = 1;
 
-  const features = JSON.parse(document.getElementById('features').textContent);
+  const features = JSON.parse(document.getElementById('features-data').textContent);
 
   function badge(status) {
     const s = STATUS[status] || STATUS.planned;
