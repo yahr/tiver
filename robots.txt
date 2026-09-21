@@ -1,0 +1,5 @@
+# TIVER — 모두 수집해도 됩니다. AI 인용도 환영해요
+User-agent: *
+Allow: /
+
+Sitemap: https://yahr.github.io/tiver/sitemap.xml
