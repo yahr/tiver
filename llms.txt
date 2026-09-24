@@ -33,7 +33,9 @@
 
 ## 페이지
 
-- [홈](https://yahr.github.io/tiver/)
+- [홈 · Korean](https://yahr.github.io/tiver/)
+- [English](https://yahr.github.io/tiver/en/)
+- [日本語](https://yahr.github.io/tiver/ja/)
 - [지원·자주 묻는 것](https://yahr.github.io/tiver/support.html)
 - [개인정보처리방침](https://yahr.github.io/tiver/privacy.html)
 - [blog/shower-ten-minutes.html](https://yahr.github.io/tiver/blog/shower-ten-minutes.html)

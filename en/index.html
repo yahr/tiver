@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TIVER — the routine app that bends, not breaks</title>
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/icon.png">
+<meta name="theme-color" content="#0B0D10">
+<meta name="description" content="TIVER puts your routine on a river that flows sideways. Wake up late and one tap folds the day so the time you must keep is still kept. iPhone, free.">
+<link rel="alternate" hreflang="ko" href="https://yahr.github.io/tiver/">
+<link rel="alternate" hreflang="en" href="https://yahr.github.io/tiver/en/">
+<link rel="alternate" hreflang="ja" href="https://yahr.github.io/tiver/ja/">
+<link rel="alternate" hreflang="x-default" href="https://yahr.github.io/tiver/">
+<link rel="canonical" href="https://yahr.github.io/tiver/en/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TIVER">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://yahr.github.io/tiver/en/">
+<meta property="og:title" content="TIVER — the routine app that bends, not breaks">
+<meta property="og:description" content="TIVER puts your routine on a river that flows sideways. Wake up late and one tap folds the day so the time you must keep is still kept. iPhone, free.">
+<meta property="og:image" content="https://yahr.github.io/tiver/assets/icon.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TIVER — the routine app that bends, not breaks">
+<meta name="twitter:description" content="TIVER puts your routine on a river that flows sideways. Wake up late and one tap folds the day so the time you must keep is still kept. iPhone, free.">
+<meta name="twitter:image" content="https://yahr.github.io/tiver/assets/icon.png">
+<link rel="stylesheet" href="../site.css">
+<style>
+  figure.card { margin: 0; }
+  figure.card img { width: 100%; height: auto; border-radius: var(--r-lg); border: 1px solid var(--line); display: block; }
+  figure.card figcaption { margin-top: var(--sp-3); color: var(--fg-2); font-size: 14px; }
+  .notice { margin-top: var(--sp-6); padding: var(--sp-4); border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); color: var(--fg-2); font-size: 14px; }
+  .steps { counter-reset: s; list-style: none; padding: 0; display: grid; gap: var(--sp-3); }
+  .steps li { counter-increment: s; position: relative; padding: var(--sp-4) var(--sp-4) var(--sp-4) 56px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); }
+  .steps li::before { content: counter(s); position: absolute; left: var(--sp-4); top: var(--sp-4); width: 26px; height: 26px; border-radius: var(--r-pill); background: var(--neon-green); color: var(--on-neon); display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+  .langs { text-align: center; color: var(--fg-2); font-size: 14px; padding-top: var(--sp-6); }
+  .langs a { color: var(--neon-green); }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><img src="../assets/icon.png" alt="" width="88" height="88"><span class="logo">TIVER</span></div>
+    <h1>A routine that bends<br>instead of breaking</h1>
+    <p class="lead">Your morning has an order to it. TIVER lays that order on a river and lets it flow. On the days you start late, it keeps what matters and trims the rest.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://apps.apple.com/kr/app/id6812160328">Get it on the App Store</a>
+      <a class="btn btn-ghost" href="#how">See how it works</a>
+    </div>
+    <p class="note">iPhone · Free · No ads</p>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">The problem</span>
+        <h2>Knowing you are late is easy. Deciding what to cut is not.</h2>
+        <p>Shorten the shower, or skip breakfast? While you do the math, another five minutes are gone. TIVER makes that call for you, using rules you set once when you were calm.</p>
+      </div>
+      <p class="notice">The app interface is in Korean for now. Weather and place search use Korean services, so outside Korea the weather falls back to Seoul.</p>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Four words are all you need</h2>
+      </div>
+      <div class="grid"><article class="card"><div class="head"><h3>Daily Stream</h3></div><p>Your day flows sideways like a river. The green NOW line marks this moment, so the time left is something you see instead of calculate.</p></article><article class="card"><div class="head"><h3>Time Drop</h3></div><p>One thing you do, with a start time and a length. Change one and the ones after it move by themselves.</p></article><article class="card"><div class="head"><h3>Anchor</h3></div><p>A moment that cannot move — leaving for work, a class, a meeting. TIVER counts backwards from it and tells you when to head out.</p></article><article class="card"><div class="head"><h3>Magic Zone</h3></div><p>The stretch before an anchor. Mark each time drop as must do, can shorten, or can skip. On a late morning, one tap folds the stretch to fit.</p></article></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Magic Zone</span>
+        <h2>What one tap actually does</h2>
+      </div>
+      <ol class="steps"><li>Drops you already missed and marked “can skip” are dropped.</li><li>“Must do” stays as it is.</li><li>If that is not enough, “can shorten” shrinks — down to half.</li><li>Still short? The earliest remaining “can skip” drops go next.</li><li>As a last resort, “must do” shrinks, but never below 90%.</li><li>If it still does not fit, TIVER tells you how many minutes late you may be. It does not block you.</li></ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Screens</span>
+        <h2>Five screens tell the whole story</h2>
+      </div>
+      <div class="grid"><figure class="card"><img src="../assets/shots/01-stream.png" alt="A late morning, folded" loading="lazy" width="311" height="672"><figcaption><strong>A late morning, folded</strong><br><span class="en">Magic Zone trimmed and dropped items so the 08:40 anchor still holds.</span></figcaption></figure><figure class="card"><img src="../assets/shots/02-zone-result.png" alt="The result, item by item" loading="lazy" width="311" height="672"><figcaption><strong>The result, item by item</strong><br><span class="en">Tap anything to bring it back for today only.</span></figcaption></figure><figure class="card"><img src="../assets/shots/03-late-start.png" alt="One button on a late start" loading="lazy" width="311" height="672"><figcaption><strong>One button on a late start</strong><br><span class="en">It appears from 30 minutes before the zone begins.</span></figcaption></figure><figure class="card"><img src="../assets/shots/04-routine-editor.png" alt="Set it once" loading="lazy" width="311" height="672"><figcaption><strong>Set it once</strong><br><span class="en">Must do · Can shorten · Can skip, per time drop.</span></figcaption></figure></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">The part people keep</span>
+        <h2>A day you miss is just a day you miss</h2>
+        <p>No streaks. No backlog. No red marks. When a time passes, it flows away quietly. There is a river that changes with the hour and the weather, water sounds you can leave playing, and stones you can skip across the surface for no points at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="notify">
+    <div class="wrap">
+      <div class="box">
+        <span class="eyebrow">iPhone</span>
+        <h2>Start today</h2>
+        <p>Free, no ads, no account needed. Sign in only if you want your routines backed up.</p>
+        <div class="cta-row"><a class="btn btn-primary" href="https://apps.apple.com/kr/app/id6812160328">Get it on the App Store</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Made by LightEZ · <a href="../privacy.html">Privacy Policy</a> · <a href="../support.html">Support</a></div>
+  <div class="wrap langs"><a href="../">한국어</a> · <strong>English</strong> · <a href="../ja/">日本語</a></div>
+</footer>
+</body>
+</html>

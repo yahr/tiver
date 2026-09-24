@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://yahr.github.io/tiver/</loc><lastmod>2026-09-22</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://yahr.github.io/tiver/support.html</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://yahr.github.io/tiver/privacy.html</loc><lastmod>2026-09-22</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://yahr.github.io/tiver/blog/</loc><lastmod>2026-09-22</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://yahr.github.io/tiver/</loc><lastmod>2026-09-25</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://yahr.github.io/tiver/en/</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yahr.github.io/tiver/ja/</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yahr.github.io/tiver/support.html</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://yahr.github.io/tiver/privacy.html</loc><lastmod>2026-09-25</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://yahr.github.io/tiver/blog/</loc><lastmod>2026-09-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://yahr.github.io/tiver/blog/shower-ten-minutes.html</loc><lastmod>2026-09-15</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://yahr.github.io/tiver/blog/breakfast-or-skip.html</loc><lastmod>2026-09-15</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://yahr.github.io/tiver/blog/makeup-three-levels.html</loc><lastmod>2026-09-14</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
